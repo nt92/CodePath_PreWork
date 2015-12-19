@@ -1,10 +1,7 @@
-//
-//  SettingsViewController.swift
 //  TipCalculator
 //
 //  Created by Nikhil Thota on 12/18/15.
 //  Copyright © 2015 Nikhil Thota. All rights reserved.
-//
 
 import UIKit
 
