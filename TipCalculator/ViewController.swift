@@ -67,7 +67,23 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         //print("view will appear")
         
+        let themeIndex = defaults.integerForKey("theme_index")
         
+        let orange = UIColor(red: 255/255, green: 174/255, blue: 0/255, alpha: 1.0)
+        let blue = UIColor(red: 0/255, green: 191/255, blue: 255/255, alpha: 1.0)
+        
+        if(themeIndex == 0)
+        {
+            barView.backgroundColor = orange
+            tipPercents.backgroundColor = blue
+            billField.backgroundColor = blue
+        }
+        else
+        {
+            barView.backgroundColor = blue
+            tipPercents.backgroundColor = orange
+            billField.backgroundColor = orange
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -120,13 +136,13 @@ class ViewController: UIViewController {
         })
         
         let tipPercentages = [0.18, 0.2, 0.25]
-        var tipPer = tipPercentages[tipPercents.selectedSegmentIndex]
-        var billAmount = NSString(string: billField.text!).doubleValue
-        var tip = billAmount * tipPer
-        var total = billAmount + tip
-        var two = total / 2
-        var three = total / 3
-        var four = total / 4
+        let tipPer = tipPercentages[tipPercents.selectedSegmentIndex]
+        let billAmount = NSString(string: billField.text!).doubleValue
+        let tip = billAmount * tipPer
+        let total = billAmount + tip
+        let two = total / 2
+        let three = total / 3
+        let four = total / 4
         
         tipLabel.text = "$\(tip)"
         totalLabel.text = "$\(total)"
