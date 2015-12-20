@@ -13,10 +13,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var billAmtLabel: UILabel!
     @IBOutlet weak var totalText: UILabel!
     @IBOutlet weak var tipText: UILabel!
+    @IBOutlet weak var plusLabel: UILabel!
     
     @IBOutlet weak var barSepLine: UIView!
     @IBOutlet weak var barView: UIView!
     @IBOutlet weak var tipPercents: UISegmentedControl!
+    
+    @IBOutlet weak var splitTwoLabel: UILabel!
+    @IBOutlet weak var splitThreeLabel: UILabel!
+    @IBOutlet weak var splitFourLabel: UILabel!
+    @IBOutlet weak var splitTwoText: UILabel!
+    @IBOutlet weak var splitThreeText: UILabel!
+    @IBOutlet weak var splitFourText: UILabel!
     
     @IBOutlet weak var billField: UITextField!
     
@@ -34,6 +42,13 @@ class ViewController: UIViewController {
         self.barSepLine.alpha = 0
         self.tipText.alpha = 0
         self.totalText.alpha = 0
+        self.plusLabel.alpha = 0
+        self.splitTwoLabel.alpha = 0
+        self.splitTwoText.alpha = 0
+        self.splitThreeLabel.alpha = 0
+        self.splitThreeText.alpha = 0
+        self.splitFourLabel.alpha = 0
+        self.splitFourText.alpha = 0
         
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -51,6 +66,8 @@ class ViewController: UIViewController {
         tipPercents.selectedSegmentIndex = percentValue
         super.viewWillAppear(animated)
         //print("view will appear")
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -79,13 +96,26 @@ class ViewController: UIViewController {
             self.barView.alpha = 1
             self.tipText.alpha = 1
             self.totalText.alpha = 1
+            self.plusLabel.alpha = 1
+            self.barSepLine.alpha = 1
+            self.splitTwoLabel.alpha = 1
+            self.splitTwoText.alpha = 1
+            self.splitThreeLabel.alpha = 1
+            self.splitThreeText.alpha = 1
+            self.splitFourLabel.alpha = 1
+            self.splitFourText.alpha = 1
         })
         
         UIView.animateWithDuration(0.5, animations: {
             var newCenter = self.billField.center
-            newCenter.x = 183
-            newCenter.y = 80
+            newCenter.x = 230
+            newCenter.y = 180
             self.billField.center = newCenter
+            
+            var newCenter1 = self.billAmtLabel.center
+            newCenter1.x = 90
+            newCenter1.y = 180
+            self.billAmtLabel.center = newCenter1
             
         })
         
@@ -94,12 +124,21 @@ class ViewController: UIViewController {
         var billAmount = NSString(string: billField.text!).doubleValue
         var tip = billAmount * tipPer
         var total = billAmount + tip
+        var two = total / 2
+        var three = total / 3
+        var four = total / 4
         
         tipLabel.text = "$\(tip)"
         totalLabel.text = "$\(total)"
+        splitTwoText.text = "$\(two)"
+        splitThreeText.text = "$\(three)"
+        splitFourText.text = "$\(four)"
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+        splitTwoText.text = String(format: "$%.2f", two)
+        splitThreeText.text = String(format: "$%.2f", three)
+        splitFourText.text = String(format: "$%.2f", four)
     }
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
