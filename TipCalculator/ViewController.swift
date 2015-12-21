@@ -90,6 +90,20 @@ class ViewController: UIViewController {
             tipPercents.backgroundColor = orange
             billField.backgroundColor = orange
         }
+        
+        let lastOpen = defaults.objectForKey("last_open")
+        if lastOpen != nil {
+            let current = NSDate.timeIntervalSinceReferenceDate()
+            let change = current - (lastOpen as! Double!)
+            if change < 60 * 10 {
+                let billVal = defaults.objectForKey("bill_value")
+                if billVal != nil {
+                    if billVal as! Double! != 0 {
+                        billField.text = String(billVal)
+                    }
+                }
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
