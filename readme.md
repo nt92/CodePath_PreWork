@@ -25,6 +25,10 @@ Complete **additional** functionality:
 
 ## Gif Walkthrough 
 
+<img src='TipCalcDemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
 ## Notes
 
 Challenges faced:
