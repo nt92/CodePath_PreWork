@@ -28,12 +28,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var billField: UITextField!
     
+    var formatter = NSNumberFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.numberStyle = .CurrencyStyle
+        
+        billField.placeholder = formatter.stringFromNumber(0.00)
+        let zeroVal = formatter.stringFromNumber(0.00)
         
         //self.title = "Tip Calculator"
-        tipLabel.text = "$0.00"
-        totalLabel.text = "$0.00"
+        tipLabel.text = zeroVal
+        totalLabel.text = zeroVal
         billField.becomeFirstResponder()
         
         self.tipPercents.alpha = 0
@@ -135,6 +141,8 @@ class ViewController: UIViewController {
             
         })
         
+        formatter.numberStyle = .CurrencyStyle
+        
         let tipPercentages = [0.18, 0.2, 0.25]
         let tipPer = tipPercentages[tipPercents.selectedSegmentIndex]
         let billAmount = NSString(string: billField.text!).doubleValue
@@ -144,17 +152,11 @@ class ViewController: UIViewController {
         let three = total / 3
         let four = total / 4
         
-        tipLabel.text = "$\(tip)"
-        totalLabel.text = "$\(total)"
-        splitTwoText.text = "$\(two)"
-        splitThreeText.text = "$\(three)"
-        splitFourText.text = "$\(four)"
-        
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
-        splitTwoText.text = String(format: "$%.2f", two)
-        splitThreeText.text = String(format: "$%.2f", three)
-        splitFourText.text = String(format: "$%.2f", four)
+        tipLabel.text = formatter.stringFromNumber(tip)
+        totalLabel.text = formatter.stringFromNumber(total)
+        splitTwoText.text = formatter.stringFromNumber(two)
+        splitThreeText.text = formatter.stringFromNumber(three)
+        splitFourText.text = formatter.stringFromNumber(four)
     }
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
