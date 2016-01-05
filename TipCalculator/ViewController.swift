@@ -145,7 +145,7 @@ class ViewController: UIViewController {
         UIView.animateWithDuration(0.5, animations: {
             var newCenter = self.billField.center
             newCenter.x = 230
-            newCenter.y = 180
+            newCenter.y = 181
             self.billField.center = newCenter
             
             var newCenter1 = self.billAmtLabel.center
